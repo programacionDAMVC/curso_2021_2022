@@ -9,10 +9,14 @@ public class Numero {
 		//mostrarEnConsolaN1a10();
 		//mostrarEnConsolaSerieDe5en5();
 		//mostrarEnConsolaSerieDe2en2Decreciente();
-		int numero = 7;
-		int multiplicacion = multiplicarNEnteros(numero);
+		int numero = 13;
+		//int multiplicacion = multiplicarNEnteros(numero);
 		//mostrar en consola esa multiplicación
-		System.out.printf("Multiplicar de 1 a %d vale %d%n", numero, multiplicacion);
+		//System.out.printf("Multiplicar de 1 a %d vale %d%n", numero, multiplicacion);
+		//int sumaCuadrados = sumarNCuadrados(numero);
+		// para numero = 3,  1 * 1 + 2 * 2 + 3 * 3 = 1 + 4 + 9 = 14
+		//System.out.printf("La suma de los cuadrados desde 1 a %d vale %d%n", numero, sumaCuadrados);
+		mostrarEnConsolaSumaParesEImpares(numero);
 	}
 		
 	//método que muestre en consola los números del 1 al 10.
@@ -55,6 +59,35 @@ public class Numero {
 		return multiplicacion;
 	}
 	
+	//método que devuelva la suma de los cuadrados de los N primeros números naturales.
+	public static int sumarNCuadrados( int numero ) {
+		//si pasamos numero como  5, devolvemos: 1 * 1 + 2 * 2 + 3 * 3 + 4 * 4 + 5 * 5
+		int contador = 1;
+		int suma = 0;
+		while (contador <= numero) {
+			suma += contador * contador;
+			contador++;
+		}
+		return suma;
+	}
+	
+	//método muestre en consola independientemente la suma de los pares e impares comprendidos entre 1 y N
+	public static void mostrarEnConsolaSumaParesEImpares(int numero) {
+		//ejemplo numero = 8
+		// sumamos pares  : 2 + 4 + 6 + 8
+		// sumamos impares: 1 + 3 + 5 + 7
+		int sumaPares = 0, sumaImpares = 0;
+		for (int i = 1 ; i <= numero ; i++) {
+			if (i % 2 == 0) {
+				sumaPares += i;
+			} else {
+				sumaImpares +=i;
+			}
+		}
+		System.out.printf("La suma de los números pares desde el cero a %d vale %d%n", numero, sumaPares);
+		System.out.printf("La suma de los números impares desde el cero a %d vale %d%n", numero, sumaImpares );
+
+	}
 	
 	
 }
