@@ -2,7 +2,12 @@
  * EJERCICIO 7
  * Resolver sistemas de dos ecuaciones 
  * con dos incognitas
+ * 
+ * a · x + b · y = e
+ * c · x + d · y = f
+ * 
  */
+ 
 import java.util.Scanner;
 
 public class  Ecuaciones {
@@ -12,9 +17,17 @@ public class  Ecuaciones {
 	public static void main (String[] args) {
 		
 		leerCoeficientes();
+		
 		boolean resoluble = sePuedeResolver();
 		//mostramos un mensaje
 		String mensaje = resoluble ? "se puede resolver" : "no se puede resolver";
+		//String mensaje = "";
+		//if (!resoluble) {
+		//	mensaje = "No se puede resolver";
+		//} else {
+		//	mensaje = "se puede resolver");
+		//}
+			
 		//si no se puede resolver, damos el mensaje y acaba el programa
 		if (!resoluble) {
 			System.out.printf("%s%n", mensaje);
@@ -27,6 +40,8 @@ public class  Ecuaciones {
 		double y = calcularY();
 		
 		//dar las soluciones en pantalla
+		System.out.printf("Cálculo de X es %.2f%n", x);
+		System.out.printf("Cálculo de Y es %.2f%n", y);
 	}
 	
 	public static void leerCoeficientes() {
@@ -52,13 +67,17 @@ public class  Ecuaciones {
 		//comprobamos a · d − b · c != 0
 		boolean resoluble = a * d - b * c != 0;
 		return resoluble;
+		//return a * d - b * c != 0;
 	}
 	
 	public static double calcularX() {
-		return 0;
+		double resultado = 1.0 * (e * d - b * f) / (a * d - b * c);
+		return resultado;
 	}
+	
 	public static double calcularY() {
-		return 0;
+		double resultado = 1.0 * (a * f - e * c) / (a * d - b * c);
+		return resultado ;
 	}
 		
 	
