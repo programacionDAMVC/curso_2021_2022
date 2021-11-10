@@ -9,7 +9,7 @@
  * 5. Decimos si es divisible por 15 (30), o por 3 (9), o por 5 (25), o ni por 3 ni por 5 (154) (if- else if- ... - else)
  * 6. Usando un bucle while mostramos en consola la secuencia 1 2 3 4 5 ..... n
  * 7. Usando un bucle do-while mostramos en consola la secuencia 2 4 6 8 ..... n ó n-1
- * 8. Usando un bucle for mostramos los impares 1 3 5 ....   pero en cuatro columnas
+ * 8. Usando un bucle for mostramos los impares 1 3 5 ....n ó n-1  pero en cuatro columnas
  */
 
 import java.util.Scanner;
@@ -52,6 +52,28 @@ public class Recuperacion1 {
 			System.out.printf("%-5d", contador);
 			contador++;
 		}
+		//7
+		//System.out.printf("%nValor de número %d, valor de contador %d%n", numero , contador);
+		System.out.println("\nImprimiendo secuencia segunda"); //salto de línea para separa las secuencias que vienen
+		contador = 2;
+		do {
+			System.out.printf("%-5d", contador);
+			contador += 2; //contador = contador + 2;
+		} while (contador <= numero);
+		//8
+		System.out.println("\nImprimiendo secuencia tercera");
+		contador = 0;
+		for (int i = 1 ; i <= numero; i += 2 ) {
+			System.out.printf("%5d", i);
+			contador++;
+			if (contador % 4 == 0) {
+				System.out.println(); //cada 4 veces hago salto de línea (4 columnas que pide el ejercicio)
+			}
+		}
+		
+		
+		
+		
 		
 	}
 }
