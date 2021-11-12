@@ -15,9 +15,9 @@ import java.util.Scanner;
 //import java.util.*;
 
 public class Aleatorio2 {
-	static Random r = new Random();
+	//static Random r = new Random();
 	public static void main (String[] args) {
-		
+		Random r = new Random();
 		int aleatorio = r.nextInt(10);
 		
 		int contadorUsuario = devolverNumeroIntentosUsuario(aleatorio);
@@ -47,7 +47,7 @@ public class Aleatorio2 {
 			numero = sc.nextInt();
 			contador++;
 		} while (aleatorio != numero);
-		sc.close();
+		//sc.close();
 		return contador;
 	}
 	
@@ -76,6 +76,7 @@ public class Aleatorio2 {
 	
 	public static int devolverNumeroIntentosOrdenador3(int aleatorio) {
 		//genera de forma aleatoria de 0 a 9 hasta que acertemos
+		Random r = new Random();
 		int aleatorioDelMetodo = r.nextInt(10);
 		int contador = 0;
 		while (true) {
