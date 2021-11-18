@@ -7,6 +7,9 @@
  * Ejemplo aleatoriamente sale la posición 2
  * Si numeros[2] era 4, ahora numeros[2] será -4
  * Un método que me devuelva el número mas grande de la colección
+ * El método contrario, que devuelva el número mas pequeño de la colección (para casa)
+ * Un método que devuelva la media (sumar todos los valores y dividirlo por el nº de datos)
+ * Si el tamaño es cero o negativo bucle do-while hasta que introduzcamos un número > 0
  */
 
 import java.util.Scanner;
@@ -15,6 +18,7 @@ import java.util.Random;
 public class Arrays1 {
 	
 	public static void main (String[] args) {
+		
 		Random random = new Random();
 		//solicitamos los datos
 		System.out.println("Introduce tamaño del array");
@@ -35,14 +39,22 @@ public class Arrays1 {
 		
 		System.out.println("-----------------------------");
 		mostrarDatosEnConsola(numeros);
-		
+		System.out.println("\n-----------------------------");
+		System.out.printf("El valor medio del array es %.2f%n", 
+						obtenerValorMedioDelArray(numeros));
 		//sacamos la posición al azar
 		int posicion = random.nextInt(tamanno);
 		//cambiamos el signo
 		numeros[posicion] *= -1;
 		//mostramos datos
-		System.out.println("\n-----------------------------");
+		System.out.println("-----------------------------");
 		mostrarDatosEnConsola(numeros);
+		System.out.println("\n-----------------------------");
+		System.out.printf("El número mas grande del array es %.2f%n", 
+						obtenerValorMasGrandeDelArray(numeros));
+		
+
+
 	}
 	
 	public static void mostrarDatosEnConsola (float[] numeros) {
@@ -53,6 +65,25 @@ public class Arrays1 {
 			System.out.printf("%8.2f",numeros[i]);
 		}
 	}
+	
+	public static float obtenerValorMasGrandeDelArray(float[] numeros) {
+		float numeroMasGrande = -Float.MIN_VALUE;  //para que sea mas pequeño que los negativos
+		for(int i = 0; i < numeros.length; i++){
+			if (numeros[i] > numeroMasGrande) {
+				numeroMasGrande = numeros[i];
+			}
+		} 
+		return numeroMasGrande;
+	}
+	
+	public static float obtenerValorMedioDelArray(float[] numeros) {
+			float suma = 0;
+			for (int i = 0; i < numeros.length; i++) {
+				suma += numeros[i];
+			}
+			return suma / numeros.length;
+	}
+	
 	
 	
 }
