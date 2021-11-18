@@ -20,10 +20,13 @@ public class Arrays1 {
 	public static void main (String[] args) {
 		
 		Random random = new Random();
-		//solicitamos los datos
-		System.out.println("Introduce tamaño del array");
 		Scanner sc = new Scanner(System.in);
-		int tamanno = sc.nextInt();
+		int tamanno = -1;
+		//solicitamos los datos
+		do {
+			System.out.println("Introduce tamaño correcto del array");
+			tamanno = sc.nextInt();
+		} while (tamanno <= 0);
 		
 		//creamos el array
 		float[] numeros = new float[tamanno];
@@ -52,6 +55,8 @@ public class Arrays1 {
 		System.out.println("\n-----------------------------");
 		System.out.printf("El número mas grande del array es %.2f%n", 
 						obtenerValorMasGrandeDelArray(numeros));
+		System.out.printf("El número mas chcio del array es %.2f%n", 
+						obtenerValorMasChicoDelArray(numeros));						
 		
 
 
@@ -76,6 +81,17 @@ public class Arrays1 {
 		return numeroMasGrande;
 	}
 	
+	public static float obtenerValorMasChicoDelArray(float[] numeros) {
+		float numeroMasChico = Float.MAX_VALUE;  //para que sea el float mas grande
+		for (float numero : numeros) {
+			if (numero < numeroMasChico){
+				numeroMasChico = numero;
+			}
+		}
+		return numeroMasChico;
+	}
+	
+	
 	public static float obtenerValorMedioDelArray(float[] numeros) {
 			float suma = 0;
 			for (int i = 0; i < numeros.length; i++) {
@@ -83,8 +99,5 @@ public class Arrays1 {
 			}
 			return suma / numeros.length;
 	}
-	
-	
-	
 }
 
