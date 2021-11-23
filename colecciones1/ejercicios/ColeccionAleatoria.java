@@ -36,6 +36,10 @@ public class ColeccionAleatoria {
 	public static int obtenerValorMasChico (int[] array){
 		return 0;
 	}
+	
+	public static int obtenerValorMasGrande (int[] array){
+		return 0;
+	}
 
 
 }
