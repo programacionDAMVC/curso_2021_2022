@@ -1,13 +1,25 @@
-package constructores;
-//ejemplo de clase con constructor por defecto
-//NO DEFINIO CONSTRUCTOR ALGUNO
-public class Disco1 {
+package teoria.constructores;
+//clase con varios constructores
+public class Disco3 {
     //atributos
     private String marca;
     private int capacidad;
 
-    //getters y setters
+    //constructores
 
+    public Disco3(String marca, int capacidad) {
+        this.marca = marca;
+        this.capacidad = capacidad;
+    }
+
+    public Disco3() {
+    }
+
+    public Disco3(String marca) {
+        this.marca = marca;
+        this.capacidad = 5;
+    }
+    //getters y setters
 
     public String getMarca() {
         return marca;
@@ -27,7 +39,7 @@ public class Disco1 {
 
     @Override
     public String toString() {
-        return "Disco1{" +
+        return "Disco3{" +
                 "marca='" + marca + '\'' +
                 ", capacidad=" + capacidad + "G " +
                 '}';

@@ -1,26 +1,18 @@
-package constructores;
-//clase con varios constructores
-public class Disco3 {
+package teoria.constructores;
+//Esta clase usa un constructor para inicializar todos los atributos
+public class Disco2 {
     //atributos
     private String marca;
     private int capacidad;
 
-    //constructores
+    //constructor
 
-    public Disco3(String marca, int capacidad) {
+    public Disco2(String marca, int capacidad) {
         this.marca = marca;
         this.capacidad = capacidad;
     }
 
-    public Disco3() {
-    }
-
-    public Disco3(String marca) {
-        this.marca = marca;
-        this.capacidad = 5;
-    }
     //getters y setters
-
     public String getMarca() {
         return marca;
     }
@@ -39,7 +31,7 @@ public class Disco3 {
 
     @Override
     public String toString() {
-        return "Disco3{" +
+        return "Disco2{" +
                 "marca='" + marca + '\'' +
                 ", capacidad=" + capacidad + "G " +
                 '}';

@@ -1,4 +1,4 @@
-package metodos;
+package teoria.metodos;
 
 import java.util.Scanner;
 

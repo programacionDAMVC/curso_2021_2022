@@ -1,8 +1,8 @@
-package tests;
+package teoria.tests;
 
-import constructores.Disco1;
-import constructores.Disco2;
-import constructores.Disco3;
+import teoria.constructores.Disco1;
+import teoria.constructores.Disco2;
+import teoria.constructores.Disco3;
 
 public class TestDiscos {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package tests;
+package teoria.tests;
 
-import clases.Computer;
+import teoria.clases.Computer;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package clases;
+package teoria.clases;
 
 /**
  * Clase computer que represanta a ordenadores en general
