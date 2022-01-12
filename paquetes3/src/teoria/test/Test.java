@@ -1,4 +1,6 @@
-package test;
+package teoria.test;
+
+
 
 import matematicas.estadistica.Basica;
 import matematicas.geometria.circulares.Circulo;
