@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fechas:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fechas_jar_1_0_0</output-path>
+    <root id="archive" name="fechas.jar">
+      <element id="module-output" name="fechas" />
+    </root>
+  </artifact>
+</component>
