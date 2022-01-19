@@ -19,12 +19,40 @@ public class Cadenas1 {
         String nombreMayuscula = devolverNombreMayuscula(nombre);
         System.out.printf("Recibido: %s, en mayúscula %s %n",
                 nombre, nombreMayuscula);
+        String nombreCapitalizado = devolverNombreCapitalizadoCompuesto(nombre);
+        System.out.printf("Longitud de nombre %d%n", nombreCapitalizado.length());
+        System.out.printf("Recibido: %s, capitalizado %s %n",
+                nombre, nombreCapitalizado);
+    }
+
+    private static String devolverNombreCapitalizadoCompuesto(String nombre) {
+        //maria de los ángeles: María De Los Ángelos
+        //split espacio en blanco y obtengo ["maría","de","los","ángeles"]
+        System.out.printf("Longitud de nombre %d%n", nombre.length());
+        String nombreCompuestoCapitalizado = "";
+        String[] tokens = nombre.split(" ");
+   //     String[] tokens = nombre.split("\s+");
+        for (String nombreSimple: tokens) {
+            nombreCompuestoCapitalizado += devolverNombreCapitalizadoSimple(nombreSimple) + " ";
+        }
+        return nombreCompuestoCapitalizado.trim();
+    }
+
+
+    private static String devolverNombreCapitalizadoSimple(String nombre) {
+        //manuel : crear dos subcadenas m  -  anuel
+        //m -> M
+        //Concatebar M con anuel y hacer el return
+        if (nombre.length() == 0)
+            return "";
+        String primeraLetra = (nombre.charAt(0) + "").toUpperCase();
+        String subcadena = nombre.substring(1).toLowerCase();
+        return primeraLetra + subcadena;
     }
 
     private static String devolverNombreMayuscula(String nombre) {
         return nombre.toUpperCase();
     }
 
-    //método 1
     //método 2
 }
