@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="digitos:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/digitos1_1_0_jar</output-path>
+    <root id="archive" name="digitos.jar">
+      <element id="module-output" name="digitos" />
+    </root>
+  </artifact>
+</component>
