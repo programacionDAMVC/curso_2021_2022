@@ -3,19 +3,29 @@ package ejercicios.ejercicio2;
 import java.util.Random;
 
 public class ClaveSegura {
+    private static final int TAMANNO_MINIMO = 16;
+    private static final int RANGO_TAMANNO = 5;
+    private static int contador = 0;  //conocer el  nº intentos para generar todas las claves
+
     private static Random random = new Random();
-
     private static final String FUENTE_CARACTERES =
-            "abcdefghijklmnñ¿?~()=@.&&opqrstuvwxyzABCDEFEGHIJKL34567890124567MNÑOPQRSTUVWXYZ¿?~()=@.&&$!¿¡:,;!¡&{}0123456789012456789";
-    private String claveSegura; //hay especifiaciones
-    private int tamannoClave;
+            "abcdefghijklmnñ¿?~()=@.&&opqrstuvwxyzABCDEFEGHIJKL34567890124567MNÑOPQRSTUVWXYZ¿p?~()=@.&&$!¿¡:,;!¡&{}0123456789012456789";
 
+    //atributos
+    private String claveSegura;
+    private int tamannoClave;  //comprendido entre 8 y 12 caracteres
+
+    //constructor
     public ClaveSegura() {
         tamannoClave = generarTamanno();
         do {
             claveSegura = generarClave();
-        } while (! esClaveSegura() );
-
+            contador++;
+        } while ( ! esClaveSegura() );
+    }
+    //getter del String claveSegura
+    public String getClaveSegura() {
+        return claveSegura;
     }
 
     private boolean esClaveSegura() {
@@ -25,15 +35,15 @@ public class ClaveSegura {
     }
 
     private boolean tieneAlMenosUnCaracterNoAlfaNumerico() {
-        return false;
+        return claveSegura.matches(".*[^0-9a-záéíóúüñA-ZÁÉÍÓÚÜÑ].*");
     }
 
     private boolean tieneAlMenosUnNumero() {
-        return false;
+        return claveSegura.matches(".*[0-9].*");
     }
 
     private boolean tieneAlMenosUnaMayuscula() {
-        return claveSegura.matches("[A-ZÁÉÍÓÚÜÑ]");
+        return claveSegura.matches(".*[A-ZÁÉÍÓÚÜÑ].*");
     }
 
     private boolean tieneAlMenosUnaMinuscula() {
@@ -41,7 +51,7 @@ public class ClaveSegura {
     }
 
     private boolean tieneAlMenos8Caracteres() {
-        return claveSegura.length() >= 8;
+        return claveSegura.length() >= TAMANNO_MINIMO;
     }
 
 
@@ -56,17 +66,16 @@ public class ClaveSegura {
     }
 
     private int generarTamanno() {
-        Random random = new Random();
-        //usamos la clase Random y el método nextInt(...)
-        //cambiar la lógica para obtener un tamaño de 8 a 12 inclusive ámbos
-        return 8 + random.nextInt(5);
+       return TAMANNO_MINIMO + random.nextInt(RANGO_TAMANNO);
     }
 
     public static void main(String[] args) {
+        ClaveSegura cSegura = null;
         for (int i= 0; i < 10; i++) {
-            ClaveSegura cSegura = new ClaveSegura();
+            cSegura = new ClaveSegura();
             System.out.printf("Tamaño de la clave %d%n", cSegura.tamannoClave);
             System.out.printf("Clave %s%n", cSegura.claveSegura);
         }
+        System.out.printf("Nº de intentos: %d", contador);
     }
 }
