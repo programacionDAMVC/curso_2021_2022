@@ -1,10 +1,10 @@
-package teoria.execepcionesDeclarativas.antes17;
+package teoria.excepcionesDeclarativas.antes17;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Ejemplo1 {
+public class EjemploLectura {
     public static void main(String[] args) {
         Scanner sc = null;
         try {

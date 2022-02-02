@@ -1,4 +1,4 @@
-package teoria.execepcionesNoDeclarativas;
+package teoria.excepcionesNoDeclarativas;
 
 import numeros.Numeros;
 

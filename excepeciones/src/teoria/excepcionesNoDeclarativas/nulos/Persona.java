@@ -1,4 +1,4 @@
-package teoria.execepcionesNoDeclarativas.nulos;
+package teoria.excepcionesNoDeclarativas.nulos;
 
 public class Persona {
     //atributos
