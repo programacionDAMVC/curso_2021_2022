@@ -1,6 +1,4 @@
-package ejercicios.ejercicio2;
-
-import teoria.excepcionesPropias.NoTrianguloRectanguloException;
+package ejercicios.ejercicio2.binario;
 
 public class Binario {
     private String valorBinario;  // debe ser 0s y 1s  ejem: 1001   111 001 101010

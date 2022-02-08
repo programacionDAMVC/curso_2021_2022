@@ -1,4 +1,7 @@
-package ejercicios.ejercicio2;
+package ejercicios.ejercicio2.binario;
+
+import ejercicios.ejercicio2.binario.Binario;
+import ejercicios.ejercicio2.binario.BinarioException;
 
 import java.util.Scanner;
 
