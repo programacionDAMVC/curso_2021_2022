@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Persona {
+
+    //atributos
     private String nombrePersona;
     private LocalDate fechaNacimiento;
     private String dni;
-    //constructor
 
+    //constructor
     public Persona(String nombrePersona, LocalDate fechaNacimiento, String dni) {
         this.nombrePersona = nombrePersona;
         this.fechaNacimiento = fechaNacimiento;
@@ -26,8 +28,8 @@ public class Persona {
     public String getDni() {
         return dni;
     }
-    //toString nombre, dni y edad X años
 
+    //toString nombre, dni y edad X años
     @Override
     public String toString() {
         return String.format("%S, %s y edad %d años", nombrePersona, dni,
