@@ -33,13 +33,10 @@ public class Persona {
     @Override
     public String toString() {
         return String.format("%S, %s y edad %d años", nombrePersona, dni,
-                getAnnos());
+                Helper.getAnnos(fechaNacimiento));
     }
 
-    private int getAnnos() {
-        Period periodo = Period.between(fechaNacimiento, LocalDate.now());
-        return periodo.getYears();
-    }
+
 
 
 }

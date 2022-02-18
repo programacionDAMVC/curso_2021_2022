@@ -1,6 +1,7 @@
 package ejercicios.ejercicio2.clases;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Helper {
     //método que valide dni tanto en formato como en letra 11111111H
@@ -14,6 +15,11 @@ public class Helper {
         int iNumero = Integer.parseInt(sNumero);
         int posicion = iNumero % 23;
         return juegoCaracteres.charAt(posicion) == letra;
+    }
+
+    public static int getAnnos(LocalDate fecha) {
+        Period periodo = Period.between(fecha, LocalDate.now());
+        return periodo.getYears();
     }
 
 
