@@ -6,7 +6,11 @@ import java.util.List;
 public class TestFigurasRegulares {
     public static void main(String[] args) {
 
+        //FiguraRegular figuraRegular = new FiguraRegular();
+        //no se puede instanciar (crear objetos) de una clase abstracta
+
         List<FiguraRegular> listaFigurasRegulares  = new ArrayList<>();
+
         FiguraRegular cuadrado1 = new Cuadrado();
         cuadrado1.setValorLado(4);
        // System.out.printf("Área vale %.2f%n", cuadrado1.calcularArea());
@@ -24,12 +28,24 @@ public class TestFigurasRegulares {
     //    System.out.printf("Área vale %.2f%n", triangulo2.calcularArea());
         listaFigurasRegulares.add(triangulo2);
 
+        FiguraRegular pentagono1 = new Pentagono();
+        pentagono1.setValorLado(2);
+        listaFigurasRegulares.add(pentagono1);
+
+        FiguraRegular pentagono2 = new Pentagono(3);
+        listaFigurasRegulares.add(pentagono2);
+
         mostrarFiguras(listaFigurasRegulares);
     }
     private static void mostrarFiguras ( List<FiguraRegular> lista) {
         for (FiguraRegular figura: lista) {
-            System.out.printf("Figura regular, perímetro %d, área %.2f,%n"
-                    , figura.calcularPerimetro(), figura.calcularArea());
+            System.out.printf("Figura regular %S, perímetro %d, área %.2f,%n",
+                    obtenerNombre(figura), figura.calcularPerimetro(), figura.calcularArea());
         }
+    }
+
+    private static String obtenerNombre(FiguraRegular figura) {
+        String[] tokens = figura.getClass().getName().split("\\.");
+        return tokens[3];
     }
 }

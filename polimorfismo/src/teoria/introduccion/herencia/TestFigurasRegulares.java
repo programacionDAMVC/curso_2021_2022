@@ -5,6 +5,7 @@ import java.util.List;
 
 public class TestFigurasRegulares {
     public static void main(String[] args) {
+        FiguraRegular figuraRegular = new FiguraRegular();
 
         List<FiguraRegular> listaFigurasRegulares  = new ArrayList<>();
         Cuadrado cuadrado1 = new Cuadrado();

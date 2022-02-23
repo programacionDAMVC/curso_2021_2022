@@ -34,4 +34,5 @@ public abstract class FiguraRegular {
     }
 
     public abstract double calcularArea();
+
 }
