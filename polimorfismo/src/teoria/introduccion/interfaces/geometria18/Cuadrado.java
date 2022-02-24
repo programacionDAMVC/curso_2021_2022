@@ -1,4 +1,4 @@
-package teoria.introduccion.interfaces.geometria;
+package teoria.introduccion.interfaces.geometria18;
 
 public class Cuadrado extends FiguraCuadratica {
 

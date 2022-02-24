@@ -1,9 +1,17 @@
-package teoria.introduccion.interfaces.geometria;
+package teoria.introduccion.interfaces.geometria18;
 
 public class Rectangulo extends FiguraCuadratica {
 
     public Rectangulo(int base, int altura) {
+
         super(base, altura, base, altura);
+        if (base < altura ) { //queremos que la base sea el lado mas grande
+            int[] ordenado = Figura.ordenarValores(base, altura);
+            setLado1(ordenado[0]);
+            setLado2(ordenado[1]);
+            setLado3(ordenado[0]);
+            setLado4(ordenado[1]);
+        }
     }
 
     @Override

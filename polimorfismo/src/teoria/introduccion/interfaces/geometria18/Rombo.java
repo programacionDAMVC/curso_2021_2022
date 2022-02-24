@@ -1,6 +1,6 @@
-package teoria.introduccion.interfaces.geometria;
+package teoria.introduccion.interfaces.geometria18;
 
-public class Rombo extends FiguraCuadratica{
+public class Rombo extends FiguraCuadratica {
 
     private int angulo; //viene en grados
 
