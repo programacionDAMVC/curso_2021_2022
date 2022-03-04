@@ -50,8 +50,7 @@ public class TestTrabajadores {
         if (opcion.equals("1")) {
             grado = obtenerGrado();
             return new Oficial(nombreTrabajador, apellidosTrabajador, grado);
-        }
-        else {
+        } else {
             titulacion = obtenerTitulacion();
             return new Tecnico(nombreTrabajador, apellidosTrabajador, titulacion);
         }

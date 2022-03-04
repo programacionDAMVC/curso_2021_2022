@@ -19,6 +19,8 @@ public class Tecnico extends Trabajador{
         //idem que en Oficial, pero ahora cambiamos el enum de Tecnico y ahí
         //se asigna en el enum los valores de 500, 400 y 300 respectivamente
         //se retorna el sueldo mensual mas la paga extra
-        return PAGA_DIARIA * diasTrabajados;
+        //return PAGA_DIARIA * diasTrabajados; sin la extra
+        return PAGA_DIARIA * diasTrabajados + titulacion.getExtra();
+
     }
 }

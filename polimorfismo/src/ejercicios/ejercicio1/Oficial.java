@@ -16,9 +16,8 @@ public class Oficial extends Trabajador{
 
     @Override
     public double calcularSueldoMensual(int diasTrabajados) {
-        //usando un switch, el sueldo mensual puede incrementarse de diferente manera
-        //PRIMERA: ganan 100 más, los de SEGUNDA: 150  Y los de TERCERA: 200
-        //cantidad mensual, no diaria
-        return PAGA_DIARIA * diasTrabajados ;
+
+       return  PAGA_DIARIA * diasTrabajados + clase.getExtra();
+
     }
 }
