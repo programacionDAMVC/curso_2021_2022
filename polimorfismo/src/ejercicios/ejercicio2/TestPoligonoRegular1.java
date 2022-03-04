@@ -33,7 +33,28 @@ public class TestPoligonoRegular1 {
         Scanner sc = new Scanner(new File(path));
         //leer línea a línea del fichero
         //mostramos con sout las líneas del fichero
+        /*while (sc.hasNextLine()){
+            String linea = sc.nextLine();
+            System.out.println(linea);
+        }*/
         //una vez hecho esto, mostrar igualmente, pero sin la cabecera
+        sc.nextLine();
+        while (sc.hasNextLine()){
+            String linea = sc.nextLine();
+            System.out.println(linea);
+            //las líneas tienen el formato 3,9   6,8 ...
+            //indican el nº de lados y la longitud de lado
+            //ejemplo 3,9: tres lados de longitud 9
+            //sirve para crear un triángulo equilatero
+            //ejemplo 6,8: seis lados de longitud 8
+            //sirve para crear un hexágo de longitud 8
+            //cada linea se desmuneza en dos datos, nº lador y longitud
+            //usando el método split de la clase String
+            //en función del primer campo creo un tipo de objeto
+            //ejemlo 3,9 hacemos new TrianguloEquilatero(9)
+            //ejemplo 6,8 new Hexagon(8)
+            //lo añadimos a la lista
+        }
     }
 
     private static void seleccionarAleatorioyMostrarIguales() {
