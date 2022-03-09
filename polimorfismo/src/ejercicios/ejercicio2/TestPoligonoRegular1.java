@@ -12,6 +12,8 @@ public class TestPoligonoRegular1 {
         //crearListaPoligonosRegulares();
         try {
             crearListaPoligonosRegulares("FILES/figuras.csv");
+            if (listaPoligonos.size() == 0)
+                return;
 
         } catch (FileNotFoundException e) {
             System.err.printf("No existe el fichero con los polígonos");
@@ -24,24 +26,37 @@ public class TestPoligonoRegular1 {
         System.out.println("=============================================");
         //mostramos polígonos después de ordenar
         mostrarDatosPoligonos();
+
+        System.out.println("=============================================");
+        mostrarDatosPoligonosOrdenadorPorNumeroLados();
         System.out.println("=============================================");
         //seleccionamos aleatoriamente un poligono y mostramos cuantos iguales hay
         seleccionarAleatorioyMostrarIguales();
     }
 
+    private static void mostrarDatosPoligonosOrdenadorPorNumeroLados() {
+        listaPoligonos.sort(new Comparator<PoligoRegular>() {
+            @Override
+            public int compare(PoligoRegular p1, PoligoRegular p2) {
+                return p1.numeroLados - p2.numeroLados;
+            }
+        });
+        mostrarDatosPoligonos();
+    }
+
     private static void crearListaPoligonosRegulares(String path) throws FileNotFoundException {
         Scanner sc = new Scanner(new File(path));
-        //leer línea a línea del fichero
-        //mostramos con sout las líneas del fichero
+
         /*while (sc.hasNextLine()){
             String linea = sc.nextLine();
             System.out.println(linea);
         }*/
-        //una vez hecho esto, mostrar igualmente, pero sin la cabecera
-        sc.nextLine();
+        sc.nextLine(); //quito la cabecera
+        //leer línea a línea del fichero
+        //mostramos con sout las líneas del fichero
         while (sc.hasNextLine()){
             String linea = sc.nextLine();
-            System.out.println(linea);
+          //  System.out.println(linea);
             //las líneas tienen el formato 3,9   6,8 ...
             //indican el nº de lados y la longitud de lado
             //ejemplo 3,9: tres lados de longitud 9
@@ -50,9 +65,27 @@ public class TestPoligonoRegular1 {
             //sirve para crear un hexágo de longitud 8
             //cada linea se desmuneza en dos datos, nº lador y longitud
             //usando el método split de la clase String
+            String[] tokens = linea.split(",");
             //en función del primer campo creo un tipo de objeto
             //ejemlo 3,9 hacemos new TrianguloEquilatero(9)
             //ejemplo 6,8 new Hexagon(8)
+            //tokens[0] nos dice el nº de lados, tokens[1] la longitud de lado, como entero
+            if (!tokens[1].matches("[1-9][0-9]*")) //ejem. 6,nueve
+                continue; //las línea de abajo se dejan sin ejecutar
+            int valorLado = Integer.parseInt(tokens[1]);
+            switch (tokens[0]) {
+                case "3" :
+                    listaPoligonos.add(new TrianguloEquilatero(valorLado));
+                    break;
+                case "4" :
+                    listaPoligonos.add(new Cuadrado(valorLado));
+                    break;
+                case "6" :
+                    listaPoligonos.add(new Hexagono(valorLado));
+                    break;
+                default:
+                    break;
+            }
             //lo añadimos a la lista
         }
     }

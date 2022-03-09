@@ -2,7 +2,7 @@ package ejercicios.ejercicio2;
 //poligono regular todos sus lados son iguales
 public abstract class PoligoRegular implements Comparable<PoligoRegular>{
 
-    private int numeroLados;
+    protected int numeroLados;
     protected int longitudLado;
 
     public PoligoRegular(int numeroLados, int longitudLado) {
