@@ -13,6 +13,10 @@ public interface Estadistica {
                 calcularSuma(), calcularValorMedio(), calcularDesviacionTipica());
     }
     static Estadistica getArrayDeMayorDesviacionTipica(Estadistica e1, Estadistica e2) {
-        return null;
+        double dT1 = e1.calcularDesviacionTipica();
+        double dT2 = e2.calcularDesviacionTipica();
+        if (dT1 > dT2)
+            return e1;
+        return e2;
     }
 }

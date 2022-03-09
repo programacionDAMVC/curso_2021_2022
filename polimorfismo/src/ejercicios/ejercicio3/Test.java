@@ -17,6 +17,8 @@ public class Test {
                 a1.calcularSuma(), a1.calcularValorMedio(), a1.calcularDesviacionTipica());*/
         System.out.println(a1.mostrarDatosEstadisticos());
         System.out.println(a2.mostrarDatosEstadisticos());
+        Estadistica e = Estadistica.getArrayDeMayorDesviacionTipica(a1, a2);
+        System.out.println(e.mostrarDatosEstadisticos());
 
     }
 }
