@@ -1,0 +1,12 @@
+LEER FICHERO BINARIO:
+FileInputStream, mejor envolverlo en un BufferedInputStream
+LEER FICHERO TEXTO:
+Scanner
+
+ESCRIBIR FICHERO BINARIO
+FileOutputStream, mejor envolverlo en un BufferedOutputStream
+ESCRIBR FICHERO TEXTO
+PrintWriter
+
+OJO CON LA CODIFICACIÓN DE LOS FICHEROS DE TEXTO, TANTO A Scanner y PrintWriter se le puede pasar la codificación
+Si son UTF-8 no hay problema
