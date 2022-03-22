@@ -7,26 +7,29 @@ import java.util.Scanner;
 public class TestPersonal {
     private static Scanner sc = new Scanner(System.in);
     private static Personal personal = null;
+
     public static void main(String[] args) {
         crearInstanciaPersonal();
-
         while (true) {
             mostrarMenu();
         }
     }
 
     private static void crearInstanciaPersonal() {
-        try {
-            List<Persona> personas = Auxiliar.crearListaPersonas(
+      /*  try {
+            List<Persona> personas = Auxiliar.crearListaPersonasDesdeCSV(
                     "FICHEROS/personal.csv");
             personal = new Personal(personas);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
+      /*  List<Persona> personas = Auxiliar.crearListaPersonasDesdeCSV(
+                "FICHEROS/personal.csv");*/
+        List<Persona> personas = Auxiliar.crearListaPersonasDesdeJSON(
+                "FICHEROS/personal.json");
+        personal = new Personal(personas);
 
-        //leer el fichero csv usando el método crear crearListaPersonas
-        //devuelve un List<Persona>
-        //crear una instancia de la clase Personal
+
     }
 
     private static void mostrarMenu() {
@@ -80,7 +83,11 @@ public class TestPersonal {
         if (sc != null)
             sc.close();
         //grabamos el fichero con los datos actuales (posibles borrados)
-
+        try {
+            Auxiliar.crearFicheroPersonas(personal.getPersonas());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 }

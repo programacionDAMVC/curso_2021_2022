@@ -1,6 +1,7 @@
 package ejercicios.ejercicio1;
 
 public class Persona {
+
     private String nombrePersona;
     private String apellidos;
     private String email;

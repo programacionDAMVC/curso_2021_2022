@@ -14,6 +14,10 @@ public class Personal {
     public Personal() {
     }
 
+    public List<Persona> getPersonas() {
+        return personas;
+    }
+
     public boolean anndirPersona(Persona persona){
         return personas.add(persona);
     }
