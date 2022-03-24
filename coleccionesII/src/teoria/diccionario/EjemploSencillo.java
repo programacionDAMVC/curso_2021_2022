@@ -37,8 +37,28 @@ public class EjemploSencillo {
             System.out.printf("%s -> %s%n", clave, diccionario2.get(clave));
         }
 
-        //diccionario 3, simulando los datos del fichero datos.csv,
-        //clave el email
-        //clase Persona con dos atributos: firstName, lastName
+        //crear tres objetos Person, uno de ellos usando el constructor vacío
+        //Brittaney,Buttress,bbuttress0@cornell.edu
+        Person person1 = new Person(); //usando el constructor vacío
+        person1.setFirstName("Brittaney");
+        person1.setLastName("Buttress");
+        //Arabele,Carbin,acarbin1@dagondesign.com
+        Person person2 = new Person("Arabele" ,"Carbin");
+        //Bebe,Poncet,bponcet2@parallels.com
+        Person person3 = new Person("Bebe","Poncet");
+        //definimos el dicccionario, usamos como clave el email
+        Map<String, Person> diccionario3 = new HashMap<>();
+        //añadimos los tres objetos
+        diccionario3.put("bbuttress0@cornell.edu", person1);
+        diccionario3.put("acarbin1@dagondesign.com", person2);
+        diccionario3.put("bponcet2@parallels.com", person3);
+        //recorremos mostrando los datos: email -> personio
+        //obtenemos una colección con las claves, es de tipo Set
+        Set<String> clavesDiccionario3 = diccionario3.keySet();
+        //usamos foreach y el método get(clave) para obtener el valor
+        System.out.println("Datos del diccionario 3");
+        for (String clave: clavesDiccionario3) {
+            System.out.printf("%s -> %S%n", clave, diccionario3.get(clave));
+        }
     }
 }
