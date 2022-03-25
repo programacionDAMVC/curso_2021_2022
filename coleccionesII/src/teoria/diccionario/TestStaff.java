@@ -13,9 +13,43 @@ public class TestStaff {
         Map<String, Person> staff = createStaff(path);
         staffObject = new Staff(staff);
         staffObject.showData();
-        //add new staff to staffObject
-        //buscamos el staff anterior
-        //eliminamos
+        String email = "correo@dkfdk.es";
+        String firstName = "joaquin";
+        String lastName = "martínez";
+        Person person = new Person(firstName, lastName);
+        boolean newStaff  = staffObject.addPerson(person, email);
+        System.out.println("================================");
+        System.out.printf("New member? %B%n", newStaff);
+        newStaff  = staffObject.addPerson(person, email);
+        System.out.println("================================");
+        System.out.printf("New member? %B%n", newStaff);
+        Person findStaff = staffObject.getPersonByEmail(email);
+        System.out.println("================================");
+        System.out.println("staff");
+        if (findStaff != null)
+            System.out.printf("%s%n", findStaff);
+        else
+            System.out.println("not member");
+        findStaff = staffObject.getPersonByEmail("correo@noexisten.com");
+        System.out.println("================================");
+        System.out.println("staff");
+        if (findStaff != null)
+            System.out.printf("%s%n", findStaff);
+        else
+            System.out.println("not member");
+
+        Person deleteStaff = staffObject.removePerson(email);
+        System.out.println("================================");
+        System.out.println("delete staff");
+        if (deleteStaff != null)
+            System.out.printf("%s%n", deleteStaff);
+        else
+            System.out.printf("not exist member");
+        deleteStaff = staffObject.removePerson("email@noexiste.com");
+        if (deleteStaff != null)
+            System.out.printf("%s%n", deleteStaff);
+        else
+            System.out.printf("email not exist");
 
     }
 

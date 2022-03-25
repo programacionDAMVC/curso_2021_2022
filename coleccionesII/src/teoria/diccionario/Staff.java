@@ -14,8 +14,11 @@ public class Staff {
     }
 
     //método para añadir datos al atributo
-    public Person addPerson (Person person, String email) {
-        return staff.put(email, person);
+    public boolean addPerson (Person person, String email) {
+        int init = staff.size();
+        staff.put(email, person);
+        int end = staff.size();
+        return end == init + 1;
     }
     //método para eliminar(mirar documentación API java Map)
     public Person removePerson(String email){

@@ -1,0 +1,62 @@
+INSERT INTO alumno (nombre,apellidos) VALUES ("Juan", "García Paniagua");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Pedro", "Buendía García");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Jacinto", "Piedra Hita");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Pedro", "Nuñez García");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Inmaculada", "Beñat Polonia");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Rocío", "Cornejo García");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Victoria", "Buendía Benito");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Mª Dolores", "Molinos Codoba");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Alejandro ", "Zapatero Aznar");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Ángel", "Gómez Gómez");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Luisa", "Peralez Santiago");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Felix", "Barou García-Concha");
+INSERT INTO alumno (nombre,apellidos) VALUES ("Samuel", "García Fernández");
+
+
+
+INSERT INTO modulo (nombre,numeroHoras) VALUES ("Base de datos", 8);
+INSERT INTO modulo (nombre,numeroHoras) VALUES ("Programación", 8);
+INSERT INTO modulo (nombre,numeroHoras) VALUES ("Lenguajes de marcas", 4);
+
+INSERT INTO curso (nombre, aula) VALUES ("Segundo A", "Aula 1");
+INSERT INTO curso (nombre, aula) VALUES ("Segundo B", "Aula 2");
+
+INSERT INTO evaluacion VALUES (1,1,1,5);
+INSERT INTO evaluacion VALUES (1,2,1,6);
+INSERT INTO evaluacion VALUES (1,3,1,4);
+INSERT INTO evaluacion VALUES (2,1,1,4);
+INSERT INTO evaluacion VALUES (2,2,1,5);
+INSERT INTO evaluacion VALUES (2,3,1,6);
+INSERT INTO evaluacion VALUES (3,1,1,6);
+INSERT INTO evaluacion VALUES (3,2,1,1);
+INSERT INTO evaluacion VALUES (3,3,1,10);
+INSERT INTO evaluacion VALUES (4,1,1,5);
+INSERT INTO evaluacion VALUES (4,2,1,6);
+INSERT INTO evaluacion VALUES (4,3,1,1);
+INSERT INTO evaluacion VALUES (5,1,1,6);
+INSERT INTO evaluacion VALUES (5,2,1,6);
+INSERT INTO evaluacion VALUES (5,3,1,6);
+INSERT INTO evaluacion VALUES (6,1,1,2);
+INSERT INTO evaluacion VALUES (6,2,1,8);
+INSERT INTO evaluacion VALUES (6,3,1,7);
+INSERT INTO evaluacion VALUES (7,1,1,6);
+INSERT INTO evaluacion VALUES (7,2,1,6);
+INSERT INTO evaluacion VALUES (7,3,1,6);
+INSERT INTO evaluacion VALUES (8,1,1,3);
+INSERT INTO evaluacion VALUES (8,2,1,0);
+INSERT INTO evaluacion VALUES (8,3,1,1);
+INSERT INTO evaluacion VALUES (9,1,2,6);
+INSERT INTO evaluacion VALUES (9,2,2,6);
+INSERT INTO evaluacion VALUES (9,3,2,6);
+INSERT INTO evaluacion VALUES (10,1,2,1);
+INSERT INTO evaluacion VALUES (10,2,2,1);
+INSERT INTO evaluacion VALUES (10,3,2,1);
+INSERT INTO evaluacion VALUES (11,1,2,6);
+INSERT INTO evaluacion VALUES (11,2,2,8);
+INSERT INTO evaluacion VALUES (11,3,2,9);
+INSERT INTO evaluacion VALUES (12,1,2,9);
+INSERT INTO evaluacion VALUES (12,2,2,10);
+INSERT INTO evaluacion VALUES (12,3,2,3);
+INSERT INTO evaluacion VALUES (13,1,2,3);
+INSERT INTO evaluacion VALUES (13,2,2,3);
+INSERT INTO evaluacion VALUES (13,3,2,4);
