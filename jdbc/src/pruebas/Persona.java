@@ -43,4 +43,19 @@ public class Persona {
     public String toString() {
         return String.format("%S;%d;%s", nombrePersona, edad, dni);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Persona persona = (Persona) o;
+
+        return dni != null ? dni.equals(persona.dni) : persona.dni == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return dni != null ? dni.hashCode() : 0;
+    }
 }

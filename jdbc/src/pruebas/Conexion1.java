@@ -14,8 +14,27 @@ public class Conexion1 {
             insertarPersonasBD(listaPersonas, connection);
             listaPersonas =obtenerTodasLasPersonas(connection);
             listaPersonas.forEach(System.out::println);
+            System.out.println("Buscar persona por DNI");
+            String dni1 = solictarDni();
+            Persona persona = buscarPersonaPorDni(connection, dni1);
+            System.out.printf("Persona %S con dni %s%n", persona, dni1);
+            System.out.println("Borrar persona por DNI");
+            String dni2 = solictarDni();
+            boolean exitoBorrado = borrarPersonaPorDni(connection, dni2);
+            System.out.printf("Borrado persona con dni %s, %B%n", dni2, exitoBorrado);
+            System.out.println("Introduce dni de persona a  modificar");
             String dni = solictarDni();
-            Persona persona = buscarPersonaPorDni(connection, dni);
+            System.out.println("Introduce nombre de persona a  modificar");
+            String nombre = solicitarNombre();
+            System.out.println("Introduce edad de persona a  modificar");
+            int edad = solicitarEdad();
+            Persona persona1 = new Persona(nombre, edad, dni);
+            boolean exitoModificado = actualizarPersonaPorDni(connection, persona1);
+            System.out.printf("Actualizado persona con dni %s, %B%n", dni2, exitoModificado);
+
+            /*String dni3 = "12' or 'a' = 'a";
+            buscarPersonaPorDni(connection, dni3);  inyeccion sql*/
+            sc.close();
             
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -23,23 +42,66 @@ public class Conexion1 {
         if (sc != null)
             sc.close();
     }
+    private static boolean actualizarPersonaPorDni(Connection connection, Persona persona) throws SQLException {
+        //sentencia UPDATE usuarios SET nombre = 'luisito', edad = 15 WHERE dni = '01234567a';
+        String sql = "UPDATE usuarios SET nombre = ?, edad = ? WHERE dni = ?;";
+        PreparedStatement sentencia = connection.prepareStatement(sql);
+        sentencia.setString(1, persona.getNombrePersona());
+        sentencia.setInt(2, persona.getEdad());
+        sentencia.setString(3, persona.getDni());
+        int resultado = sentencia.executeUpdate();
+        if (sentencia != null)
+            sentencia.close();
+        return resultado != 0;
+    }
 
-    private static Persona buscarPersonaPorDni(Connection connection, String dni) {
+
+    private static boolean borrarPersonaPorDni(Connection connection, String dni) throws SQLException {
+        //sentencia DELETE FROM usuarios WHERE dni = '12345678o';
+        String sql = "DELETE FROM usuarios WHERE dni ='" + dni + "';";
+        Statement sentencia = connection.createStatement();
+        int resultado = sentencia.executeUpdate(sql);
+        //falta cerrar ResultSet y el Statement
+        return resultado != 0;
+    }
+
+    private static Persona buscarPersonaPorDni(Connection connection, String dni) throws SQLException {
         //ejecutar la sentencia  SELECT * FROM usuarios WHERE dni ='12345678o';
-        //crear el Statement
-        //crear el ResultSet
-        //obtener el dato del ResulSet y crear un objeto Persona
-        //devolver el objeto Person
-        return null;
+        String sql = "SELECT * FROM usuarios WHERE dni ='" + dni + "';";
+        Statement sentencia = connection.createStatement();
+        ResultSet resultado = sentencia.executeQuery(sql);
+        Persona persona = null;
+        while (resultado.next()) {
+            persona = new Persona(resultado.getString(2), resultado.getInt(3), resultado.getString(4));
+        }
+        return persona;
     }
 
     private static String solictarDni() {
         String dni = "";
         do {
-            System.out.printf("Introduce el dni de la persona %d%n");
+            System.out.println("Introduce el dni de la persona");
             dni = sc.nextLine();
         } while (! dni.matches("[0-9]{8}[a-zA-z]"));
         return dni;
+    }
+
+    public static String solicitarNombre() {
+        String nombre = "";
+        do {
+            System.out.println("Introduce el nombre de la persona");
+            nombre = sc.nextLine();
+        } while (! nombre.toLowerCase().matches("[a-záéíóúüñ]{2,}\s*([a-záéíóúüñ]{1,}\s*)*"));
+        return nombre;
+    }
+    public static int solicitarEdad() {
+        String sEdad = "";
+        do {
+            System.out.println("Introduce el edad de la persona");
+            sEdad = sc.nextLine();
+        } while (! sEdad.matches("[0-9]|[1-9][0-9]|1[01][0-9]|120"));
+        int iEdad = Integer.parseInt(sEdad);
+        return iEdad;
     }
 
     private static List<Persona> obtenerTodasLasPersonas(Connection conexion) throws SQLException {
@@ -66,6 +128,10 @@ public class Conexion1 {
             throws SQLException {
         Statement sentencia = conexion.createStatement();
         for (Persona persona: listaPersonas) {
+            //antes comprobamos que no existe ese dni en la BD
+            Persona personaBD = buscarPersonaPorDni(conexion, persona.getDni());
+            if (persona.equals(personaBD))
+                continue; //las sentencias de abajo no se ejecuta, se va arriba y sigue el bucle
             String sql = " INSERT INTO usuarios (nombre, edad, dni) VALUES ('" + persona.getNombrePersona()
                     + "'," + persona.getEdad() + ",'" + persona.getDni() + "');";
             sentencia.executeUpdate(sql);
@@ -78,7 +144,7 @@ public class Conexion1 {
     private static List<Persona> crearListaPersonas() {
         
         List<Persona> lista = new ArrayList<>();
-        String sOpcion = "", nombre = "", sEdad = "", dni ="";
+        String sOpcion = "";
         do {
             System.out.println("Introduce número de personas a dar de alta, de 1 a 10 máximo");
             System.out.println("En caso de cero, significa que no quieres dar de alta usuarios");
@@ -88,17 +154,11 @@ public class Conexion1 {
         if (iOpcion == 0)
             return lista;
         for (int i = 0; i < iOpcion; i++) {
-            do {
-                System.out.printf("Introduce el nombre de la persona %d%n", i + 1);
-                nombre = sc.nextLine();
-            } while (! nombre.toLowerCase().matches("[a-záéíóúüñ]{2,}\s*([a-záéíóúüñ]{1,}\s*)*"));
-            do {
-                System.out.printf("Introduce el edad de la persona %d%n", i + 1);
-                sEdad = sc.nextLine();
-            } while (! sEdad.matches("[0-9]|[1-9][0-9]|1[01][0-9]|120"));
-            int iEdad = Integer.parseInt(sEdad);
-            dni = solictarDni();
-            Persona persona = new Persona(nombre, iEdad, dni);
+            System.out.println("Introduce los datos de la  persona " + (i + 1));
+            String nombre = solicitarNombre();
+            int edad = solicitarEdad();
+            String dni = solictarDni();
+            Persona persona = new Persona(nombre, edad, dni);
             lista.add(persona);
         }
         
@@ -111,6 +171,7 @@ public class Conexion1 {
                 "jdbc:sqlite:DATABASES/test.db");
         return conexion;
     }
+
     private static void crearTablas(Connection conexion) throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS usuarios (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

@@ -5,7 +5,9 @@ CREATE TABLE usuarios (
         apellidos TEXT NOT NULL,
 	telefono TEXT,
 	dni TEXT NOT NULL UNIQUE,
-	email TEXT NOT NULL UNIQUE
+	email TEXT NOT NULL UNIQUE,
+	rol INTEGER DEFAULT 0,
+	password TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS reservas;
