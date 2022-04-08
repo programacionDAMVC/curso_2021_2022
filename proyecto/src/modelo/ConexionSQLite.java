@@ -36,9 +36,11 @@ public class ConexionSQLite {
             conexionSQLite = new ConexionSQLite();
         return conexionSQLite;
     }
+
     public Connection getConexion() {
         return conexion;
     }
+
     public void cerrarConexion () {
         if (conexion != null) {
             try {
