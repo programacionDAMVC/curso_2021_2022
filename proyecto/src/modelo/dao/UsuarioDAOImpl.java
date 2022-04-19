@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO{
-    Connection conexion = ConexionSQLite.getConexionSQLite().getConexion();
+    private Connection conexion = ConexionSQLite.getConexionSQLite().getConexion();
     @Override
     public Usuario crearUsuario(Usuario usuario) throws SQLException {
         //INSERT INTO usuarios (nombre, apellidos, telefono, dni, email, password )
@@ -29,14 +29,18 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     }
 
     @Override
-    public boolean eliminarUsuario(String dni) {
-
-        //semana santa
-        return false;
+    public boolean eliminarUsuarioPorDNI(String dni) throws SQLException {
+        String sql = " DELETE FROM usuarios WHERE dni = ? ;";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, dni);
+        int resultado = sentencia.executeUpdate();
+        if (sentencia != null)
+            sentencia.close();
+        return resultado != 0;
     }
 
     @Override
-    public boolean actualizarUsuario(String dni, Usuario newUsuario) throws SQLException {
+    public boolean actualizarUsuarioPorDNI(String dni, Usuario newUsuario) throws SQLException {
         String sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, telefono = ?, dni = ?, email = ?, rol = ?, password = ? WHERE dni = ?;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1, newUsuario.getNombre()); sentencia.setString(2, newUsuario.getApellidos());
@@ -87,5 +91,37 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         if (sentecia != null)
             sentecia.close();
         return lista;
+    }
+
+    @Override
+    public Usuario loguearUsuarios(String email, String password) throws SQLException {
+        Usuario usuario = null;
+        String sql = " SELECT * FROM usuarios WHERE email = ? AND password = ? ;";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, email);
+        sentencia.setString(2, password);
+        ResultSet resultado = sentencia.executeQuery();
+        while (resultado.next())
+            usuario = new Usuario(resultado.getString("nombre"), resultado.getString("apellidos"),
+                    resultado.getString("telefono"), resultado.getString("dni"),
+                    resultado.getString("email"), resultado.getString("password"));
+        if (resultado != null)
+            resultado.close();
+        if (sentencia != null)
+            sentencia.close();
+        return usuario;
+    }
+
+    @Override
+    public boolean mandarDatosAFichero(String path) {
+        //crear printwriter y escribir los datos de la BD
+        return false;
+    }
+
+    @Override
+    public boolean guardarDatosBD(String path) {
+        //leer fichero con Scanner
+        //introducimos datos a la BD
+        return false;
     }
 }
