@@ -33,17 +33,18 @@ CREATE VIEW informacion_reservas AS select nombre, apellidos, fecha, duracion, c
 
 DROP TABLE IF EXISTS actualizaciones;
 CREATE TABLE actualizaciones (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_reserva INTEGER,
-        id_usuario_old INTEGER,
+    id_usuario_old INTEGER,
 	id_usuario_new INTEGER,
-        duracion_old INTEGER,
-        duracion_new INTEGER,
+    duracion_old INTEGER,
+    duracion_new INTEGER,
 	confirmada_old INTEGER,
 	confirmada_new INTEGER,
 	date_old TEXT,
 	date_new TEXT
 );
+
 DROP TRIGGER IF EXISTS actualizado;
 CREATE TRIGGER actualizado AFTER UPDATE
 ON reservas

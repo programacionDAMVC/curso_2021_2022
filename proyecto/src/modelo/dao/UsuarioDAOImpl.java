@@ -2,16 +2,21 @@ package modelo.dao;
 
 import modelo.ConexionSQLite;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class UsuarioDAOImpl implements UsuarioDAO{
     private Connection conexion = ConexionSQLite.getConexionSQLite().getConexion();
     @Override
     public Usuario crearUsuario(Usuario usuario) throws SQLException {
-        //INSERT INTO usuarios (nombre, apellidos, telefono, dni, email, password )
-        // VALUES ('juan', 'garcía garcía', '953272522', '01234567a', 'email@correo.es', 'djfdjfljdkf');
+        //llamamos al método existeEmailOdni, si existe no se inserta el usuario, si no si se inserta
+        if (existeEmailOdni(usuario.getDni(), usuario.getEmail()))
+            return null;
         String sql = "INSERT INTO usuarios (nombre, apellidos, telefono, dni, email, password ) VALUES (?, ?, ?, ?, ?, ?);";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1, usuario.getNombre());
@@ -27,7 +32,21 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             return usuario;
         return null;
     }
+    private boolean existeEmailOdni (String dni, String email) {
+        String sql = "SELECT * FROM usuarios WHERE dni = ? OR email = ?;";
+        int contador = 0;
+        try (PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+            sentencia.setString(1, dni);
+            sentencia.setString(2, email);
+            ResultSet resultado = sentencia.executeQuery();
+            while (resultado.next())
+                contador++;
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return contador != 0;
+    }
     @Override
     public boolean eliminarUsuarioPorDNI(String dni) throws SQLException {
         String sql = " DELETE FROM usuarios WHERE dni = ? ;";
@@ -41,6 +60,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
     @Override
     public boolean actualizarUsuarioPorDNI(String dni, Usuario newUsuario) throws SQLException {
+        if (existeEmailOdni(newUsuario.getDni(), newUsuario.getEmail()))
+            return false;
         String sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, telefono = ?, dni = ?, email = ?, rol = ?, password = ? WHERE dni = ?;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1, newUsuario.getNombre()); sentencia.setString(2, newUsuario.getApellidos());
@@ -114,14 +135,41 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
     @Override
     public boolean mandarDatosAFichero(String path) {
-        //crear printwriter y escribir los datos de la BD
-        return false;
+        String ruta = "FICHEROS/" + path;
+        File inFile = new File(ruta);
+        try (PrintWriter out = new PrintWriter(inFile)) {
+            List<Usuario> lista = obtenerTodosUsuarios();
+            for (Usuario usuario: lista) {
+               // System.out.println(usuario);
+                out.println(usuario);
+                out.flush();
+            }
+        } catch (FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return inFile.length() != 0;
     }
 
     @Override
     public boolean guardarDatosBD(String path) {
+        int contador = 0;
+        String inFile = "FICHEROS/" + path;
+        try (Scanner sc = new Scanner(new File(inFile))) {
+//juani,garcía garcía,953272522,01234567b,email11@correo.es,0,djfdjfljdkf
+            while (sc.hasNextLine()) {
+                String[] tokens = sc.nextLine().split(",");
+                Usuario usuario = new Usuario(tokens[0], tokens[1], tokens[2], tokens[3],
+                        tokens[4], tokens[6]);
+                usuario.setRol(Integer.parseInt(tokens[5]));
+                if (crearUsuario(usuario) != null)
+                    contador++;
+            }
+        } catch (FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
         //leer fichero con Scanner
         //introducimos datos a la BD
-        return false;
+        System.out.printf("Insertados %d usuarios en la BD%n", contador);
+        return contador != 0;
     }
 }
