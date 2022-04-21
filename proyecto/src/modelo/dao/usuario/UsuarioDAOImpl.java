@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.usuario;
 
 import modelo.ConexionSQLite;
 

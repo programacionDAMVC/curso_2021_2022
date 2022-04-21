@@ -1,7 +1,6 @@
-package modelo.dao;
+package modelo.dao.usuario;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class TestUsuarioDAO {
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class TestUsuarioDAO {
 
             boolean exitoBorrado = dao.eliminarUsuarioPorDNI(dni);
             System.out.printf("Borrado usuario  con dni %s: %B%n", dni, exitoBorrado);
-*/
+
         try {
             String email = "email@correo.es";
             String password = "djfdjfljdkf";
@@ -41,10 +40,10 @@ public class TestUsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             //System.out.println("Error de servidor");
-        }
+        }*/
         String path = "copia1.csv";
-        boolean exitoGuardadoFichero = dao.mandarDatosAFichero(path);
-        System.out.printf("Creado fichero FICHEROS/%s %B%n", path, exitoGuardadoFichero);
+     //   boolean exitoGuardadoFichero = dao.mandarDatosAFichero(path);
+     //   System.out.printf("Creado fichero FICHEROS/%s %B%n", path, exitoGuardadoFichero);
         boolean exitoGuardadoBD = dao.guardarDatosBD(path);
         System.out.printf("Guardado en la BD datos de fichero FICHEROS/%s %B%n", path, exitoGuardadoBD);
         /*boolean existeEmailODni = ((UsuarioDAOImpl) dao).existeEmailOdni("01234567", "email@correo.es");

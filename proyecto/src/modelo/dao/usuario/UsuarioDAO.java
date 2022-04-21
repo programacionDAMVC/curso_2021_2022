@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.usuario;
 
 import java.sql.SQLException;
 import java.util.List;
