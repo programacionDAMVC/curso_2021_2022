@@ -8,16 +8,16 @@ public class Reserva {
     private int duracion;
     private int horaEntrada;
     private TipoReserva tipoReserva = TipoReserva.GUIADA;
-    private int idUsario;
+    private String dniUsuario; //lo puedo obtener del usuario logueado
 
     public Reserva() {
     }
 
-    public Reserva(LocalDate fecha, int duracion, int horaEntrada, int idUsario) {
+    public Reserva(LocalDate fecha, int duracion, int horaEntrada, String dniUsuario) {
         this.fecha = fecha;
         this.duracion = duracion;
         this.horaEntrada = horaEntrada;
-        this.idUsario = idUsario;
+        this.dniUsuario = dniUsuario;
     }
 
     public LocalDate getFecha() {
@@ -52,18 +52,18 @@ public class Reserva {
         this.tipoReserva = tipoReserva;
     }
 
-    public int getIdUsario() {
-        return idUsario;
+    public String getDniUsuario() {
+        return dniUsuario;
     }
 
-   /* public void setIdUsario(int idUsario) {
+/* public void setIdUsario(int idUsario) {
         this.idUsario = idUsario;
     }*/
 
     @Override
     public String toString() {
-        return String.format("%s,%d,%d,%s,%d",
-                fecha, duracion, horaEntrada, tipoReserva, idUsario);
+        return String.format("%s,%d,%d,%s,%s",
+                fecha, duracion, horaEntrada, tipoReserva, dniUsuario);
 
     }
 }

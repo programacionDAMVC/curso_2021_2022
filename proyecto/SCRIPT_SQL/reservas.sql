@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL,
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   nombre TEXT NOT NULL,
         apellidos TEXT NOT NULL,
 	telefono TEXT,
 	dni TEXT NOT NULL UNIQUE,
