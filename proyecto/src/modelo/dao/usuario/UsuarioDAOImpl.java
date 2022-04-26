@@ -76,22 +76,20 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     }
 
     @Override
-    public Usuario buscarUsuarioPorDni(String dni) throws SQLException {
-        Usuario usuario = null;
-        String sql = " select * FROM usuarios WHERE dni = ?;";
+    public int buscarIDUsuarioPorDni(String dni) throws SQLException {
+        int id = -1;
+        String sql = " select id FROM usuarios WHERE dni = ?;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1,dni);
         ResultSet resultado = sentencia.executeQuery();
         while (resultado.next()) { //id|nombre|apellidos|telefono|dni|email|rol|password
-            usuario = new Usuario(resultado.getString("nombre"), resultado.getString("apellidos"),
-                    resultado.getString("telefono"), resultado.getString("dni"),
-                    resultado.getString("email"), resultado.getString("password"));
+            id = resultado.getInt(1);
         }
         if (resultado != null)
             resultado.close();
         if (sentencia != null)
             sentencia.close();
-        return usuario;
+        return id;
     }
 
     @Override

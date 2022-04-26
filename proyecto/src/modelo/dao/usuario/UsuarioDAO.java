@@ -7,7 +7,7 @@ public interface UsuarioDAO {
     Usuario crearUsuario(Usuario usuario) throws SQLException;
     boolean eliminarUsuarioPorDNI(String dni) throws SQLException;
     boolean actualizarUsuarioPorDNI(String dni, Usuario newUsuario) throws SQLException;
-    Usuario buscarUsuarioPorDni(String dni) throws SQLException;
+    int buscarIDUsuarioPorDni(String dni) throws SQLException;
     Usuario buscarUsuarioPorId(int id) throws SQLException;
     List<Usuario> obtenerTodosUsuarios() throws SQLException;
     Usuario loguearUsuarios(String email, String password) throws SQLException;

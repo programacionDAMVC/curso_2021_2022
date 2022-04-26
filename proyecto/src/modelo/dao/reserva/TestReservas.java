@@ -17,12 +17,13 @@ public class TestReservas {
         System.out.println(date2);
         System.out.println(sqlDate);*/
         ReservaDAO dao  = new ReservaDAOImpl();
-        /*Reserva reserva = new Reserva(LocalDate.now(), 1, 3, "11111111S");
+        Reserva reserva = new Reserva(LocalDate.now(), 1,
+                3, "11111111S");
         Reserva reserva1 = dao.crearReserva(reserva);
         if (reserva1 != null)
             System.out.println(reserva1);
         else
-            System.out.println("no se puede insertar");*/
+            System.out.println("no se puede insertar");
         List<Reserva> lista = dao.obtenerTodasReservas();
         lista.forEach(System.out::println);
     }

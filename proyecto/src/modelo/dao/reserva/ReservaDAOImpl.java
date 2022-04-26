@@ -1,6 +1,5 @@
 package modelo.dao.reserva;
 
-import helpers.Fechas;
 import modelo.ConexionSQLite;
 import modelo.dao.usuario.Usuario;
 import modelo.dao.usuario.UsuarioDAO;
@@ -9,11 +8,12 @@ import modelo.dao.usuario.UsuarioDAOImpl;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReservaDAOImpl implements  ReservaDAO{
     private Connection conexion = ConexionSQLite.getConexionSQLite().getConexion();
+    private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+
     @Override
     public Reserva crearReserva(Reserva reserva) throws SQLException
     {
@@ -30,10 +30,8 @@ public class ReservaDAOImpl implements  ReservaDAO{
             return null;
         sentencia.setInt(2, reserva.getDuracion());
         sentencia.setString(4, reserva.getTipoReserva().toString());
-        Usuario usuario = new UsuarioDAOImpl().buscarUsuarioPorDni(reserva.getDniUsuario());
-        if (usuario == null)
-            return null;
-        sentencia.setInt(5, 1);
+        int idUsuairo = usuarioDAO.buscarIDUsuarioPorDni(reserva.getDniUsuario());
+        sentencia.setInt(5, idUsuairo);
         int resultado = sentencia.executeUpdate();
         if (resultado != 0)
             return reserva;
@@ -62,7 +60,6 @@ public class ReservaDAOImpl implements  ReservaDAO{
             if (sTipoReserva.equals("NO_GUIADA"))
                 tipoReserva = TipoReserva.NO_GUIADA;
             idUsuario = resultado.getInt("id_usuario");
-            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
             Usuario usuario = usuarioDAO.buscarUsuarioPorId(idUsuario);
             reserva = new Reserva(fecha, duracion, horaEntrada, usuario.getDni());
             reserva.setTipoReserva(tipoReserva);
@@ -74,6 +71,12 @@ public class ReservaDAOImpl implements  ReservaDAO{
     @Override
     public List<Reserva> obtenerReservarPorUsuario(String dniUsuario) {
         return null;
+    }
+
+    @Override
+    public boolean existeReserva(LocalDate fecha, int horaEntrada) {
+        String sql = " SELECT id FROM reservas WHERE fecha = ? AND hora_entrada = ?;";
+        return false;
     }
 
     @Override

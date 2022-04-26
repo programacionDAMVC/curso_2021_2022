@@ -11,6 +11,7 @@ public interface ReservaDAO {
     //constrain en BD único el par fecha y hora_entrada
     //hacemos el método siguiente:
     List<Reserva> obtenerReservarPorUsuario(String dniUsuario);
+    boolean existeReserva (LocalDate fecha, int horaEntrada);
     boolean eliminarReserva(Reserva reserva);
     Reserva modificarReserva(Reserva oldReserva, Reserva newReservar);
     //guardar datos a fichero

@@ -18,9 +18,8 @@ CREATE TABLE reservas (
 	hora_entrada INTEGER CHECK( hora_entrada IN (1, 2, 3, 4, 5, 6, 7) ) NOT NULL,
 	tipo_reserva TEXT CHECK( tipo_reserva IN ('GUIADA','NO_GUIADA') ) NOT NULL DEFAULT 'GUIADA',
 	id_usuario INTEGER NOT NULL,
+	CONSTRAINT unique_fecha_hora UNIQUE (fecha, hora_entrada),
 	CONSTRAINT FK_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
-	constrain para que sea único la pareja de campos
-	fecha y hora_entrada
 );
 
 DROP INDEX IF EXISTS index_email;
