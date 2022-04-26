@@ -66,4 +66,6 @@ public class Reserva {
                 fecha, duracion, horaEntrada, tipoReserva, dniUsuario);
 
     }
+    //dos reservas son iguales cuando tienen la misma fecha y
+    //la misma hora de entrada
 }

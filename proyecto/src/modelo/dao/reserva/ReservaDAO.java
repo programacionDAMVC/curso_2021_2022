@@ -7,7 +7,7 @@ import java.util.List;
 public interface ReservaDAO {
 
     Reserva crearReserva(Reserva reserva) throws SQLException;
-    List<Reserva> obtenerTodasReservas();
+    List<Reserva> obtenerTodasReservas() throws SQLException;
     //constrain en BD único el par fecha y hora_entrada
     //hacemos el método siguiente:
     List<Reserva> obtenerReservarPorUsuario(String dniUsuario);
