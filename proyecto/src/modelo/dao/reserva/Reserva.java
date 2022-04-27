@@ -66,6 +66,22 @@ public class Reserva {
                 fecha, duracion, horaEntrada, tipoReserva, dniUsuario);
 
     }
-    //dos reservas son iguales cuando tienen la misma fecha y
-    //la misma hora de entrada
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Reserva reserva = (Reserva) o;
+
+        if (horaEntrada != reserva.horaEntrada) return false;
+        return fecha != null ? fecha.equals(reserva.fecha) : reserva.fecha == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fecha != null ? fecha.hashCode() : 0;
+        result = 31 * result + horaEntrada;
+        return result;
+    }
 }

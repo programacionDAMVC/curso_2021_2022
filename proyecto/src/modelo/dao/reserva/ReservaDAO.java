@@ -8,11 +8,9 @@ public interface ReservaDAO {
 
     Reserva crearReserva(Reserva reserva) throws SQLException;
     List<Reserva> obtenerTodasReservas() throws SQLException;
-    //constrain en BD único el par fecha y hora_entrada
-    //hacemos el método siguiente:
     List<Reserva> obtenerReservarPorUsuario(String dniUsuario);
-    boolean existeReserva (LocalDate fecha, int horaEntrada);
-    boolean eliminarReserva(Reserva reserva);
+    boolean existeReserva (LocalDate fecha, int horaEntrada) throws SQLException;
+    boolean eliminarReserva(Reserva reserva) throws SQLException;
     Reserva modificarReserva(Reserva oldReserva, Reserva newReservar);
     //guardar datos a fichero
     //recuperar datos a fichero

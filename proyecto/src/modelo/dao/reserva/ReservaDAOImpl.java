@@ -17,11 +17,12 @@ public class ReservaDAOImpl implements  ReservaDAO{
     @Override
     public Reserva crearReserva(Reserva reserva) throws SQLException
     {
- //INSERT INTO reservas  (fecha, duracion, hora_entrada,tipo_reserva, id_usuario) VALUES ('2022-04-01', 2, 6, 1);
+        boolean existeReserva = existeReserva(reserva.getFecha(), reserva.getHoraEntrada());
+        if ( existeReserva )
+            return null;
         String sql = "INSERT INTO reservas  (fecha, duracion, hora_entrada, tipo_reserva, id_usuario) VALUES (?, ?, ?, ?,  ?);";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-      //  Date date = Fechas.convertirFormatoFechas(reserva.getFecha());
-      //  sentencia.setDate(1, new java.sql.Date(date.getTime()));
+
         sentencia.setString(1, reserva.getFecha().toString());
         if (reserva.getHoraEntrada() < 1 || reserva.getHoraEntrada() > 8)
             return null;
@@ -74,14 +75,32 @@ public class ReservaDAOImpl implements  ReservaDAO{
     }
 
     @Override
-    public boolean existeReserva(LocalDate fecha, int horaEntrada) {
+    public boolean existeReserva(LocalDate fecha, int horaEntrada) throws SQLException {
+        int id = -1;
         String sql = " SELECT id FROM reservas WHERE fecha = ? AND hora_entrada = ?;";
-        return false;
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, fecha.toString());
+        sentencia.setInt(2, horaEntrada);
+        ResultSet resultado = sentencia.executeQuery();
+        while (resultado.next())
+            id = resultado.getInt(1);
+        if (resultado != null)
+            resultado.close();
+        if ( sentencia != null )
+            sentencia.close();
+        return id != -1;
     }
 
     @Override
-    public boolean eliminarReserva(Reserva reserva) {
-        return false;
+    public boolean eliminarReserva(Reserva reserva) throws SQLException {
+        String sql = "DELETE FROM reservas WHERE fecha = ? AND hora_entrada = ?;";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, reserva.getFecha().toString());
+        sentencia.setInt(2, reserva.getHoraEntrada());
+        int rows = sentencia.executeUpdate();
+        if ( sentencia != null )
+            sentencia.close();
+        return rows != 0;
     }
 
     @Override
