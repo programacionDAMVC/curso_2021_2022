@@ -5,6 +5,9 @@ import modelo.dao.usuario.Usuario;
 import modelo.dao.usuario.UsuarioDAO;
 import modelo.dao.usuario.UsuarioDAOImpl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -104,7 +107,53 @@ public class ReservaDAOImpl implements  ReservaDAO{
     }
 
     @Override
-    public Reserva modificarReserva(Reserva oldReserva, Reserva newReservar) {
+    public Reserva modificarReserva(Reserva oldReserva, Reserva newReserva) throws SQLException {
+        //comprobamos que la nueva reserva no exista, evitamos el constrain
+        boolean existe = existeReserva(newReserva.getFecha(), newReserva.getHoraEntrada());
+        if ( existe )
+            return null;
+        if (newReserva.getHoraEntrada() < 1 || newReserva.getHoraEntrada() > 8)
+            return null;
+        if (newReserva.getHoraEntrada() + newReserva.getDuracion() > 8)
+            return null;
+        String sql = " UPDATE reservas SET fecha = ?, duracion = ?, hora_entrada = ?, tipo_reserva = ?, id_usuario = ? WHERE fecha = ? AND hora_entrada = ?;";
+        int idUsuairo = usuarioDAO.buscarIDUsuarioPorDni(newReserva.getDniUsuario());
+      //  System.out.println("id usuario " + idUsuairo);
+        TipoReserva tipoReserva = TipoReserva.GUIADA;
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, newReserva.getFecha().toString());
+        sentencia.setInt(2, newReserva.getDuracion());
+        sentencia.setInt(3, newReserva.getHoraEntrada());
+        sentencia.setString(4, newReserva.getTipoReserva().toString());
+        sentencia.setInt(5, idUsuairo);
+        sentencia.setString(6, oldReserva.getFecha().toString());
+        sentencia.setInt(7, oldReserva.getHoraEntrada());
+        int rows = sentencia.executeUpdate();
+        if (sentencia != null)
+            sentencia.close();
+        if (rows != 0)
+            return newReserva;
         return null;
+    }
+
+    @Override
+    public boolean guardarDatosAFichero(String path) {
+        String pathGuardar = "FICHEROS/" + path;
+        File outFile = new File(pathGuardar);
+        try (PrintWriter out = new PrintWriter(outFile)) {
+            List<Reserva> lista = obtenerTodasReservas();
+            for (Reserva reserva: lista) {
+                out.println(reserva);
+                out.flush();
+            }
+        } catch (FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return outFile.length() != 0;
+    }
+
+    @Override
+    public boolean leerDatosFicheroVolcarABD(String path) {
+        return false;
     }
 }

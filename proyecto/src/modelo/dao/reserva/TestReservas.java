@@ -17,7 +17,7 @@ public class TestReservas {
         System.out.println(date2);
         System.out.println(sqlDate);*/
         ReservaDAO dao  = new ReservaDAOImpl();
-        Reserva reserva = new Reserva(LocalDate.now(), 1,
+    /*    Reserva reserva = new Reserva(LocalDate.now(), 1,
                 1, "11111111S");
         Reserva reserva1 = dao.crearReserva(reserva);
         if (reserva1 != null)
@@ -35,6 +35,17 @@ public class TestReservas {
         Reserva rDelete = new Reserva(fecha, 0, hora, null);
         boolean borrado = dao.eliminarReserva(rDelete);
         System.out.printf("Borrada reserva en la fecha %s y para la hora %d: %B%n",
-                fecha, hora, borrado);
+                fecha, hora, borrado);*/
+//'2022-04-27' AND hora_entrada = 1
+        Reserva oldReserva = new Reserva(LocalDate.of(2022, 4, 27), -1,
+                1,  null);
+        Reserva newReserva = new Reserva( LocalDate.now(), 1,
+                1, "11111111S");
+        newReserva.setTipoReserva(TipoReserva.NO_GUIADA);
+        Reserva actualiza = dao.modificarReserva(oldReserva, newReserva);
+        System.out.println(actualiza);
+
+        boolean respaldo = dao.guardarDatosAFichero("copia2.csv");
+        System.out.printf("Guardo datos a fichero %B%n", respaldo);
     }
 }

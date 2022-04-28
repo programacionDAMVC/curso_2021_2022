@@ -11,7 +11,7 @@ public interface ReservaDAO {
     List<Reserva> obtenerReservarPorUsuario(String dniUsuario);
     boolean existeReserva (LocalDate fecha, int horaEntrada) throws SQLException;
     boolean eliminarReserva(Reserva reserva) throws SQLException;
-    Reserva modificarReserva(Reserva oldReserva, Reserva newReservar);
-    //guardar datos a fichero
-    //recuperar datos a fichero
+    Reserva modificarReserva(Reserva oldReserva, Reserva newReservar) throws SQLException;
+    boolean guardarDatosAFichero(String path);
+    boolean leerDatosFicheroVolcarABD(String path):
 }
