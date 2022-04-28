@@ -11,7 +11,9 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class ReservaDAOImpl implements  ReservaDAO{
     private Connection conexion = ConexionSQLite.getConexionSQLite().getConexion();
@@ -154,6 +156,25 @@ public class ReservaDAOImpl implements  ReservaDAO{
 
     @Override
     public boolean leerDatosFicheroVolcarABD(String path) {
-        return false;
+        int contador = 0;
+        String pathLectura = "FICHEROS/" + path;
+        try (Scanner sc = new Scanner(new File(pathLectura))) {
+            while (sc.hasNextLine()) {
+                String[] tokens = sc.nextLine().split(",");
+                System.out.println(Arrays.toString(tokens));
+                LocalDate fecha = LocalDate.parse(tokens[0]);
+                int duracion = Integer.parseInt(tokens[1]);
+                int horaEntrada = Integer.parseInt(tokens[2]);
+                Reserva reserva = new Reserva(fecha, duracion,
+                        horaEntrada, tokens[4]);
+                if (tokens[3].equals("NO_GUIADA"))
+                    reserva.setTipoReserva(TipoReserva.NO_GUIADA);
+                crearReserva(reserva);
+                contador++;
+            }
+        } catch (FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return contador != 0;
     }
 }

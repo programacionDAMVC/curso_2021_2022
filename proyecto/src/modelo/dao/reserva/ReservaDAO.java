@@ -13,5 +13,5 @@ public interface ReservaDAO {
     boolean eliminarReserva(Reserva reserva) throws SQLException;
     Reserva modificarReserva(Reserva oldReserva, Reserva newReservar) throws SQLException;
     boolean guardarDatosAFichero(String path);
-    boolean leerDatosFicheroVolcarABD(String path):
+    boolean leerDatosFicheroVolcarABD(String path);
 }
