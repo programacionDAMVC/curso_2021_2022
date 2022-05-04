@@ -19,7 +19,7 @@ public class GUIFlowLayout {
         ventanta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container contenedor = ventanta.getContentPane();
         FlowLayout layout = new FlowLayout();
-        layout.setAlignment(FlowLayout.RIGHT);
+        layout.setAlignment(FlowLayout.LEFT);
         layout.setHgap(20);
         layout.setVgap(20);
         contenedor.setLayout(layout);
