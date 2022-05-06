@@ -35,12 +35,22 @@ public class Ejemplo1 {
                String texto = nombre.getText();
                System.out.printf("hola %s%n", texto);
                nombre.setText("");
+                JOptionPane.showInternalMessageDialog(null, String.format("hola %s%n", texto),
+                        "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         panel.add(botonNombre);
         JButton botonSalir = new JButton("SALIR");
         //usando una expresión labmda
-        botonSalir.addActionListener( actionEvent -> System.exit(0));
+        botonSalir.addActionListener( actionEvent -> {
+            int opcion = JOptionPane.showInternalConfirmDialog(null,"¿Realmente quieres salir?",
+                    "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(opcion);
+            if (opcion == 1) //opcion 0 es confirmación y opción 1 es no confirmación
+                return;
+            System.exit(0);
+            //diálogo de confirmación (si/no)
+        });
         panel.add(botonSalir);
         contenedor.add(panel);
         ventanta.setVisible(true);
