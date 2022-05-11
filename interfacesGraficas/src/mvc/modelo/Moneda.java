@@ -5,6 +5,7 @@ public class Moneda {
     private static float UN_EURO_A_DOLARES = 1.05f;
     private float cantidad;
 
+    public Moneda () {}
     public Moneda(float cantidad) {
         this.cantidad = cantidad;
     }
