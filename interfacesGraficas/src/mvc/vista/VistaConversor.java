@@ -12,9 +12,8 @@ public class VistaConversor {
     private JFrame ventana;
     private JTextField textoCantidad;
     private JLabel mensaje;
-    private JButton botonConvertirAEuros;
-    private JButton botonConvertirADolares;
-    private JButton botonSalir;
+    private JButton botonConvertirAEuros, botonConvertirADolares;
+    private JButton botonSalir, botonLimpiar;
 
     public VistaConversor () {
         ventana = new JFrame("CONVERSOR MONEDA");
@@ -34,27 +33,38 @@ public class VistaConversor {
         mensaje = new JLabel("resultado de la conversión");
         mensaje.setForeground(Color.GREEN);
         mensaje.setFont(fuenteLabel);
-
         panelTexto.add(mensaje);
         contenedor.add(panelTexto);
-        JPanel panelBotones = crearPanelBotones();
-        contenedor.add(panelBotones);
-        JPanel panelSalir = new JPanel();
-        botonSalir = new JButton("Salir");
-        panelSalir.add(botonSalir);
-        contenedor.add(panelSalir);
+        JPanel panelInferior = crearPanelInferior();
+        contenedor.add(panelInferior);
        // ventana.pack();
         ventana.setVisible(true);
     }
 
-    private JPanel crearPanelBotones() {
+    private JPanel crearPanelInferior() {
+        JPanel panel = new JPanel();
+        GridLayout layout = new GridLayout(2,2,5,5);
+        panel.setLayout(layout);
+
+        botonConvertirADolares = new JButton("A Dolares");
+        panel.add(botonConvertirADolares);
+        botonConvertirAEuros = new JButton("A Euros");
+        panel.add(botonConvertirAEuros);
+        botonSalir = new JButton("Salir");
+        panel.add(botonSalir);
+        botonLimpiar = new JButton("Limpiar");
+        panel.add(botonLimpiar);
+        return panel;
+    }
+
+   /* private JPanel crearPanelBotones() {
         JPanel panel = new JPanel();
         botonConvertirADolares = new JButton("A Dolares");
         panel.add(botonConvertirADolares);
         botonConvertirAEuros = new JButton("A Euros");
         panel.add(botonConvertirAEuros);
         return panel;
-    }
+    }*/
 
     public JTextField getTextoCantidad() {
         return textoCantidad;
@@ -71,10 +81,19 @@ public class VistaConversor {
     public JLabel getMensaje() {
         return mensaje;
     }
+
+    public JButton getBotonConvertirADolares() {
+        return botonConvertirADolares;
+    }
+
+    public JButton getBotonLimpiar() {
+        return botonLimpiar;
+    }
+
     //constructor: crear frame
     //getter JTextField, JLabel, los dos JButton
     //main para probar la interfaz de fora sencilla
-  /*  public static void main(String[] args) {
+    public static void main(String[] args) {
         new VistaConversor();
-    }*/
+    }
 }
