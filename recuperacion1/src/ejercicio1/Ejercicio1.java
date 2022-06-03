@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class Ejercicio1 {
     //Un método que lea de la entrada estándar cinco y solo cinco números decimales y
     //que devuelva un array de float.
+    private static final int TAMANNO = 8;
     public static float[] devolverArrayFloat(){
         Scanner sc = new Scanner(System.in);
-        float[] array = new float[5];
-        for (int i = 0; i < 5; i++) {
+        float[] array = new float[TAMANNO];
+        for (int i = 0; i < array.length; i++) {
             System.out.println("Introduce un número decimal");
             array[i] = sc.nextFloat();
         }
@@ -48,6 +49,18 @@ public class Ejercicio1 {
         } while (i < arrayInt.length);
         return arrayInt;
     }
+    //Un método que se le pasa como argumento un array de float y usando obligatoria-
+    //mente un bucle foreach, devuelva el menor valor.
+    public static float obtenerMenorValorArray(float[] array) {
+        float valorMenor = Float.MAX_VALUE;
+        for (float dato : array ) {
+            if (dato < valorMenor) {
+                valorMenor = dato;
+            }
+        }
+        return valorMenor;
+    }
+
 
     public static void main(String[] args) {
         //obtener datos
@@ -67,6 +80,8 @@ public class Ejercicio1 {
         System.out.printf("Valor medio %.2f%n", valorMedio);
         int[] arrayInt = devolverArrayEnteros(array);
         System.out.println(Arrays.toString(arrayInt));
+        float valorMenor = obtenerMenorValorArray(array);
+        System.out.printf("Valor mas pequeño %.4f%n", valorMenor);
     }
 
 
