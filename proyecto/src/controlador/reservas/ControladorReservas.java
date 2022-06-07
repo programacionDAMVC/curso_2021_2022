@@ -8,6 +8,7 @@ import vista.logueo.Login;
 import vista.reservas.Reserva;
 
 public class ControladorReservas {
+
     private ReservaDAO modelo;
     private Reserva vista;
     private Usuario usuario;
@@ -21,7 +22,7 @@ public class ControladorReservas {
 
     private void inicializarVista() {
         vista.getVentanaReservas().setVisible(true);
-        vista.getLabelPrueba().setText(usuario.toString());
+        vista.getLabelPrueba().setText(usuario.getNombre());
     }
     public void inicializarControlador() {
 

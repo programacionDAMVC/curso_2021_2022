@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Ejercicio2 {
-    private static final int TAMANNO = 5;
+    private static final int TAMANNO = 4;
 
     //Un método que lea de la entrada estándar cinco y solo cinco palabras y que devuelva
     //una lista dinámica de String.
@@ -96,6 +96,19 @@ public class Ejercicio2 {
         int numeroConsonantes = numeroTotalLetras - numeroVocales;
         return numeroConsonantes;
     }
+    //método que se le pasa la lista y devuelve a la inversa las palabras concatenadas con #
+    public static String concatenarInversaPalabras (List<String> lista) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = lista.size() - 1; i >= 0 ; i--) {
+            stringBuilder.append(lista.get(i));  //en caso de array lista[i]
+            stringBuilder.append("#");
+        }
+       // System.out.println(stringBuilder.reverse());
+        String cadena1 = stringBuilder.toString();
+        String cadena2 = cadena1.substring(0,cadena1.length() - 1);
+       // System.out.println(cadena2);
+        return cadena2;
+    }
 
     public static void main(String[] args) {
         List<String> lista = obtenerListaPalabras();
@@ -115,6 +128,8 @@ public class Ejercicio2 {
         System.out.printf("Total de vocales: %d%n", numeroTotalVocales);
         int numeroTotalConsonantes = contarNumeroConsonantesDeUnaListaDePalabras(lista);
         System.out.printf("Total de consonantes: %d%n", numeroTotalConsonantes);
+        String cadena = concatenarInversaPalabras(lista);
+        System.out.printf("Concatenación %s%n",cadena );
 
     }
 }

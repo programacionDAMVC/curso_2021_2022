@@ -20,6 +20,7 @@ public class ModeloTabla extends AbstractTableModel {
             {"Joe", "Brown",
                     "Pool", 10, false}
     };
+
     @Override
     public int getRowCount() {
         return data.length;
