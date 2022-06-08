@@ -2,7 +2,7 @@ package Ejercicio3;
 
 import java.time.LocalDate;
 
-public class Test {
+public class TestPersona {
     public static void main(String[] args) {
         Persona persona1 = null;
         try {
@@ -25,14 +25,33 @@ public class Test {
         String saludo2 = new String("hola");
         System.out.println(saludo1.equals(saludo2));
         Persona persona3 = null;
-        try {
+        /*try {
             persona3 = new Persona("irene", "garcía garrido", "1111h",
                     LocalDate.of(2000,9,15), true);
             System.out.println(persona3);
         } catch (DNIException e) {
            // e.printStackTrace();
             System.err.println(e.getMessage());
+        }*/
+        Comunidad comunidad = new Comunidad();
+        comunidad.setDireccion("Avda. Barcelona 45");
+        comunidad.annadirPersona(persona1);
+        try {
+            Persona persona4 = new Persona("joaquina", "zafra garrido", "11111111h",
+                    LocalDate.of(2000,9,15), false);
+            comunidad.annadirPersona(persona4);
+            Persona persona5 = new Persona("felipe", "zafra garrido", "11111111h",
+                    LocalDate.of(2000,9,15), false);
+            comunidad.annadirPersona(persona5);
+            Persona persona6 = new Persona("agustina", "zafra garrido", "11111111h",
+                    LocalDate.of(2000,9,15), false);
+            comunidad.annadirPersona(persona6);
+
+        } catch (DNIException e) {
+            System.out.println(e.getMessage());
         }
+        System.out.println(comunidad);
+
 
 
 

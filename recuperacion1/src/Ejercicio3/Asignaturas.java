@@ -1,0 +1,5 @@
+package Ejercicio3;
+
+public enum Asignaturas {
+    MATEMATICAS, LENGUA, SISTEMAS_OPERATIVOS, MATEMATICAS_DISCRETAS, CIENCIAS_NATURALES
+}
