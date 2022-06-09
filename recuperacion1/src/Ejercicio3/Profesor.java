@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Profesor extends Persona{
 
-    private static final double EXTRAPROFESOR = 815;
-
+    private static final double EXTRAPROFESOR = 815.0;
+    private static final double TASAS = 10.5;
     private String cursoImpartido;
     private Asignaturas asignatura;
 
@@ -40,5 +40,19 @@ public class Profesor extends Persona{
         stringBuilder.append(',');
         stringBuilder.append(asignatura);
         return stringBuilder.toString();
+    }
+
+    @Override
+    public double mostrarSueldo() {
+        return super.mostrarSueldo() + EXTRAPROFESOR ;
+    }
+
+    @Override
+    public double pagarTasas() {
+        return TASAS * mostrarSueldo() / 100.0;
+    }
+    @Override
+    public double pagarIVA() {
+        return mostrarSueldo() * IVA / 100.0;
     }
 }

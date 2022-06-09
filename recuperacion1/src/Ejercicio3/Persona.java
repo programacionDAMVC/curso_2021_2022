@@ -2,8 +2,8 @@ package Ejercicio3;
 
 import java.time.LocalDate;
 
-public class Persona {
-
+public abstract  class Persona {
+    protected static final float IVA = 21.0f;
     private static final double SUEDO_BASE = 355.45;
     //Atributos para nombre, apellidos, dni, fecha de nacimiento y persona con trabajo
     //o sin trabajo.
@@ -95,8 +95,15 @@ public class Persona {
     public int hashCode() {
         return dni.hashCode();
     }
+
+
     public double mostrarSueldo() {
         return SUEDO_BASE;
     }
+
+    public abstract  double pagarTasas();
+
+    public abstract double pagarIVA();
+
 
 }

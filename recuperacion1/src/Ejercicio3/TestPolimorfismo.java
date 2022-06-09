@@ -35,7 +35,36 @@ public class TestPolimorfismo {
         mostrarDatosLista(obtenerListaMayoresEdad(lista));
         System.out.println("-----------------------------------------");
         mostrarDatosEspecificosLista(lista);
+        System.out.println("-----------------------------------------");
+        mostrarSueldosTotales(lista);
+        mostrarTasasTotales(lista);
+        mostrarPagoIVA(lista);
     }
+
+    private static void mostrarPagoIVA(List<Persona> lista) {
+        double contador = 0.0;
+        for (Persona persona: lista) {
+            contador += persona.pagarIVA();
+        }
+        System.out.printf("IVA a pagar total %.2f €%n", contador);
+    }
+
+    private static void mostrarTasasTotales(List<Persona> lista) {
+        double contador = 0.0;
+        for (Persona persona: lista) {
+            contador += persona.pagarTasas();
+        }
+        System.out.printf("Tasas totales a recaudar %.2f €%n", contador);
+    }
+
+    private static void mostrarSueldosTotales(List<Persona> lista) {
+        double contador = 0.0;
+        for (Persona persona: lista) {
+            contador += persona.mostrarSueldo();
+        }
+        System.out.printf("Sueldos totales: %.2f €%n", contador);
+    }
+
     //método que nos diga si es un profesor nos dé la materia que imparte
     //si es un alumno nos de los estudios
     private static void mostrarDatosEspecificosLista(List<Persona> lista) {

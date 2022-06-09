@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 public class TestPersona {
     public static void main(String[] args) {
-        Persona persona1 = null;
+
+        //empieza dar errores en el momento en que hago la clase Persona abstracta
+      /*  Persona persona1 = null;
         try {
             persona1 = new Persona("joaquin", "zafra garrido", "11111111h",
                     LocalDate.of(2000,9,15), false);
@@ -25,14 +27,14 @@ public class TestPersona {
         String saludo2 = new String("hola");
         System.out.println(saludo1.equals(saludo2));
         Persona persona3 = null;
-        /*try {
+        *//*try {
             persona3 = new Persona("irene", "garcía garrido", "1111h",
                     LocalDate.of(2000,9,15), true);
             System.out.println(persona3);
         } catch (DNIException e) {
            // e.printStackTrace();
             System.err.println(e.getMessage());
-        }*/
+        }*//*
         Comunidad comunidad = new Comunidad();
         comunidad.setDireccion("Avda. Barcelona 45");
         comunidad.annadirPersona(persona1);
@@ -53,7 +55,7 @@ public class TestPersona {
         System.out.println(comunidad);
 
 
-
+*/
 
     }
 }
