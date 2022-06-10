@@ -23,9 +23,11 @@ public class TestEstudiantes {
         mostrarDatosLista(lista);
         try {
             Helper.guardarDatosFichero(lista);
-            Helper.leerDatosFichero("datos.csv");
+            List<Estudiante> listaFichero = Helper.leerDatosFichero("datos.csv");
+            System.out.println("===============================");
+            mostrarDatosLista(listaFichero);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("no existe el fichero");
         }
     }
 
