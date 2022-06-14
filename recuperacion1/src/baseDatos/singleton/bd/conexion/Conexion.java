@@ -7,17 +7,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-
-    private static Conexion conexion; //uno de los atributos es un objeto de la misma clase
+    private static Conexion conexion;
     private Connection connection;
-
     private Conexion() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:BASES_DATOS/test.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:BASES_DATOS/datosMetereologicos.db");
     }
-
-    public static Conexion  getConexion() throws SQLException {
-        if (conexion == null)
-            conexion = new Conexion();
+    public static Conexion getConexion()  {
+        if (conexion == null) {
+            try {
+                conexion = new Conexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return conexion;
     }
 
@@ -25,7 +27,7 @@ public class Conexion {
         return connection;
     }
 
-    public void cerrarConexion() {
+    public void cierreConexion() {
         if (connection != null) {
             try {
                 connection.close();
@@ -34,5 +36,4 @@ public class Conexion {
             }
         }
     }
-
 }
