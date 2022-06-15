@@ -9,6 +9,8 @@ public interface MetereologiaDAO {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     List<Metereologia> obtenerTodosDatos() throws SQLException;
     Metereologia obtenerDatoPorFecha(LocalDate fecha) throws SQLException;
-    //método para borrar por fecha
+    boolean borrarDatoPorFecha(LocalDate fecha) throws SQLException;
+    boolean actualizarDatoPorFecha(Metereologia metereologia) throws SQLException;
+    boolean insertarDatos(Metereologia metereologia) throws SQLException;
 
 }
